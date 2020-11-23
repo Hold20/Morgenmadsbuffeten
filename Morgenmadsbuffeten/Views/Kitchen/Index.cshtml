@@ -1,0 +1,59 @@
+﻿@model Breakfast
+@{
+    List<RoomCheckedIn> NotCheckedIn = (List<RoomCheckedIn>) ViewData["NotCheckedIn"];
+    ViewData["Title"] = "Kitchen Overview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int totalAdults = 0, totalChildren = 0;
+
+    foreach (var room in NotCheckedIn)
+    {
+        totalAdults += room.Adults;
+        totalChildren += room.Children;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Kitchen</title>
+    <link rel = "stylesheet" href ="~/css/Kitchen.css" />
+</head>
+<body>
+<div id="Kitchen-Wrapper">
+    <div id= "KitchenTime">
+        <h3>Date:</h3>
+        <h3>@Model.Date.ToShortDateString()</h3>
+    </div>
+    <a class="btn btn-primary" asp-controller="Kitchen" asp-action="Index">Refresh</a>
+    <table class="table table-responsive-sm">
+        <tr>
+            <th></th>
+            <th>Total Guest Expected</th>
+            <th>Not Checked in</th>
+            <th>Checked in</th>
+        </tr>
+        <tr>
+            <th>Adults</th>
+            <td>@Model.Adults</td>
+            <td>@((Model.Adults - totalAdults) < 0 ? 0 : (Model.Adults - totalAdults))</td>
+            <td>@totalAdults</td>
+        </tr>
+        <tr>
+            <th>Children</th>
+            <td>@Model.Children</td>
+            <td>@((Model.Children - totalChildren) < 0 ? 0 : (Model.Children - totalChildren))</td>
+            <td>@totalChildren</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <td>@(Model.Adults + Model.Children)</td>
+            <td>@(((Model.Adults - totalAdults) + (Model.Children - totalChildren)) < 0 ? 0 : ((Model.Adults - totalAdults) + (Model.Children - totalChildren)))</td>
+            <td>@(totalAdults + totalChildren)</td>
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>

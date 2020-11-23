@@ -41,8 +41,8 @@ namespace Morgenmadsbuffeten.Controllers
             return View(breakfast);
         }
 
-        // GET: Breakfasts/Create
-        public IActionResult Create()
+        // GET: Breakfasts/Overview
+        public IActionResult Overview()
         {
             return View();
         }

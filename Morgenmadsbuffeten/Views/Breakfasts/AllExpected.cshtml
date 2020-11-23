@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Morgenmadsbuffeten.Models.RoomCheckedIn>
+﻿@model IEnumerable<Morgenmadsbuffeten.Models.Breakfast>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "AllExpected";
+    Layout = "~/Views/Shared_Layout.cshtml";
 }
 
-<h1>Checkin guests</h1>
+<h1>AllExpected</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,13 +14,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RoomNumber)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Children)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Adults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
             </th>
             <th></th>
         </tr>
@@ -29,18 +29,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.RoomNumber)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Children)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Adults)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
         </tr>
 }

@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Morgenmadsbuffeten.Models.RoomCheckedIn>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "AllOverview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Checkin guests</h1>
+<h1>AllOverview</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -21,6 +21,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Adults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
             </th>
             <th></th>
         </tr>
@@ -38,9 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Adults)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
         </tr>
 }
